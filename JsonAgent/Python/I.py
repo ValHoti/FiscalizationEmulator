@@ -1,0 +1,4 @@
+from bitsef_client import BitSefClient
+
+payload = {'type': 'I', 'invoiceNo': '0000000187', 'invoiceDate': '2026-08-29T11:30:00', 'clientId': '0', 'clientName': 'Bleres Qytetar', 'workerId': '1', 'workerName': 'admin', 'items': [{'orderId': 1, 'barcode': '8008423400539', 'article': 'Aceton', 'price': 1.5, 'amount': 5.0, 'mass': 'Cope', 'vat': 'E', 'discountPercentage': 0.0, 'discountEuro': 0.0, 'totalArticle': 7.5, 'vatArticle': 1.144068, 'articleType': 'TT'}], 'totals': {'countOrders': 1, 'total': 7.5, 'totalNoVat': 6.355932, 'discountOnTotal': 0.0, 'totalWithVat0': 0.0, 'totalWithVat8': 0.0, 'onlyVat8': 0.0, 'totalWithVat18': 7.5, 'onlyVat18': 1.144068, 'typeOfPayment': 1, 'discountOnPercentage': 0.0, 'discountEuro': 0.0}}
+print(BitSefClient().fiscal(payload))
