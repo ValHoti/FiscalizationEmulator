@@ -1,0 +1,1 @@
+javascript direct file write
