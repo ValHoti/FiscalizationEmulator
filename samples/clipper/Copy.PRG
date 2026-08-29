@@ -1,0 +1,4 @@
+PROCEDURE Main
+c:="copy;0000000187"
+? W("Copy","0000000187",c)
+RETURN

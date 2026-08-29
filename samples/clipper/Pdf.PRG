@@ -1,0 +1,4 @@
+PROCEDURE Main
+c:="pdf;0000000187"
+? W("Pdf","0000000187",c)
+RETURN
