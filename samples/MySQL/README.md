@@ -1,0 +1,1 @@
+Direct CSV to C:/Fatura/ on the MySQL SERVER machine. Requires FILE privilege and secure_file_priv allowing C:/Fatura/. INTO OUTFILE does not overwrite existing files.
