@@ -1,0 +1,1 @@
+DECLARE @f nvarchar(500)=N'C:\Fatura\Copy_0000000187_'+FORMAT(GETDATE(),'yyyyMMddHHmmssfff')+'.csv'; DECLARE @c nvarchar(4000)=N'powershell -NoProfile -Command "$f=''+@f+'';$t=$f+'.tmp';[IO.File]::WriteAllBytes($t,[Convert]::FromBase64String('Y29weTswMDAwMDAwMTg3'));Move-Item $t $f"'; EXEC master..xp_cmdshell @c,NO_OUTPUT; SELECT @f;

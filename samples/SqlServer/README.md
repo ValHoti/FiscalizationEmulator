@@ -1,0 +1,1 @@
+Direct CSV to C:\Fatura\. These scripts use xp_cmdshell + PowerShell; SQL Server service account needs folder write permission. Enable xp_cmdshell only if permitted by your security policy.
