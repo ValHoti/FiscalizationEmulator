@@ -1,0 +1,1 @@
+using System; using System.Threading.Tasks; class Example_Status { static async Task Main() { using (var c=new BitSefClient("http://127.0.0.1:5077","CHANGE-THIS-BIT-SEF-SECRET")) Console.WriteLine(await c.StatusAsync("REQUEST_ID_FROM_POST_RESPONSE")); } }

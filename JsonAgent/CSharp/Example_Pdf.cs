@@ -1,0 +1,1 @@
+using System; using System.Threading.Tasks; class Example_Pdf { static async Task Main() { using (var c=new BitSefClient("http://127.0.0.1:5077","CHANGE-THIS-BIT-SEF-SECRET")) { string json=@"{""type"":""Pdf"",""invoiceNo"":""0000000187""}"; Console.WriteLine(await c.CommandJsonAsync(json)); } } }
