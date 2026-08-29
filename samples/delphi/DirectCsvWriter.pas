@@ -1,0 +1,1 @@
+unit DirectCsvWriter; interface function W(t,n,c:string):string; implementation uses System.SysUtils,System.IOUtils; function W(t,n,c:string):string;var d,x:string;begin d:='C:\Fatura\';ForceDirectories(d);Result:=d+t+'_'+n+'_'+FormatDateTime('yyyymmddhhnnsszzz',Now)+'.csv';x:=Result+'.tmp';TFile.WriteAllText(x,c);TFile.Move(x,Result);end;end.

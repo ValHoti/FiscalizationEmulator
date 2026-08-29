@@ -1,0 +1,1 @@
+program X;{$APPTYPE CONSOLE}uses System.SysUtils,DirectCsvWriter;begin Writeln(W('Pdf','0000000187','pdf;0000000187'));end.

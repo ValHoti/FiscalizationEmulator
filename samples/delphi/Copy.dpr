@@ -1,0 +1,1 @@
+program X;{$APPTYPE CONSOLE}uses System.SysUtils,DirectCsvWriter;begin Writeln(W('Copy','0000000187','copy;0000000187'));end.
