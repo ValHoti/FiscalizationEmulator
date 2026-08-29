@@ -1,0 +1,1 @@
+const {w}=require('./writer');const c=`copy;0000000187`;console.log(w('Copy','0000000187',c));

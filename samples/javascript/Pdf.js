@@ -1,0 +1,1 @@
+const {w}=require('./writer');const c=`pdf;0000000187`;console.log(w('Pdf','0000000187',c));
