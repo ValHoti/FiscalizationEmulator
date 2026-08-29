@@ -1,0 +1,1 @@
+program Example_Status; {$APPTYPE CONSOLE} uses System.SysUtils,BitSefClient;var C:TBitSefClient;begin C:=TBitSefClient.Create('http://127.0.0.1:5077','CHANGE-THIS-BIT-SEF-SECRET');try Writeln(C.Status('REQUEST_ID_FROM_POST_RESPONSE'));finally C.Free;end;Readln;end.

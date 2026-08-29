@@ -1,0 +1,1 @@
+program Example_Pdf; {$APPTYPE CONSOLE} uses System.SysUtils,BitSefClient;var C:TBitSefClient;begin C:=TBitSefClient.Create('http://127.0.0.1:5077','CHANGE-THIS-BIT-SEF-SECRET');try Writeln(C.CommandJson('{"type":"Pdf","invoiceNo":"0000000187"}'));finally C.Free;end;Readln;end.

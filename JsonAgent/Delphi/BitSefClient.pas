@@ -1,0 +1,14 @@
+unit BitSefClient;
+interface
+uses System.SysUtils, System.Classes, System.Net.HttpClient, System.Net.URLClient, System.Hash, System.DateUtils;
+type TBitSefClient=class
+ private FBaseUrl,FSecret:string; FHttp:THTTPClient; function Post(const P,B,CT:string):string; function Sha(const S:string):string; function Hmac(const S:string):string;
+ public constructor Create(const U,K:string); destructor Destroy; override; function FiscalJson(const J:string):string; function CommandJson(const J:string):string; function CopyInvoice(const N:string):string; function PdfInvoice(const N:string):string; function DirectCsv(const T,N,C:string):string; function Status(const Id:string):string; end;
+implementation
+constructor TBitSefClient.Create(const U,K:string); begin inherited Create; FBaseUrl:=U.TrimRight(['/']);FSecret:=K;FHttp:=THTTPClient.Create;end;
+destructor TBitSefClient.Destroy;begin FHttp.Free;inherited;end;
+function TBitSefClient.Sha(const S:string):string;begin Result:=LowerCase(THashSHA2.GetHashString(S,THashSHA2.TSHA2Version.SHA256));end;
+function TBitSefClient.Hmac(const S:string):string;begin Result:=LowerCase(THashSHA2.GetHMAC(S,FSecret,THashSHA2.TSHA2Version.SHA256));end;
+function TBitSefClient.Post(const P,B,CT:string):string;var TS,N,C,Sig:string;H:TNetHeaders;Src:TStringStream;R:IHTTPResponse;begin TS:=IntToStr(DateTimeToUnix(TTimeZone.Local.ToUniversalTime(Now),False));N:=TGuid.NewGuid.ToString.Replace('{','').Replace('}','').Replace('-','');C:='POST'+#10+P+#10+TS+#10+N+#10+Sha(B);Sig:=Hmac(C);if CT<>'' then H:=[TNameValuePair.Create('X-BIT-Timestamp',TS),TNameValuePair.Create('X-BIT-Nonce',N),TNameValuePair.Create('X-BIT-Signature',Sig),TNameValuePair.Create('Content-Type',CT)] else H:=[TNameValuePair.Create('X-BIT-Timestamp',TS),TNameValuePair.Create('X-BIT-Nonce',N),TNameValuePair.Create('X-BIT-Signature',Sig)];Src:=TStringStream.Create(B,TEncoding.UTF8);try R:=FHttp.Post(FBaseUrl+P,Src,nil,H);Result:=R.ContentAsString(TEncoding.UTF8);if R.StatusCode div 100<>2 then raise Exception.CreateFmt('BIT-SEF HTTP %d: %s',[R.StatusCode,Result]);finally Src.Free;end;end;
+function TBitSefClient.FiscalJson(const J:string):string;begin Result:=Post('/api/bitsef/fiscal',J,'application/json');end; function TBitSefClient.CommandJson(const J:string):string;begin Result:=Post('/api/bitsef/command',J,'application/json');end; function TBitSefClient.CopyInvoice(const N:string):string;begin Result:=Post('/api/bitsef/copy/'+N,'','');end; function TBitSefClient.PdfInvoice(const N:string):string;begin Result:=Post('/api/bitsef/pdf/'+N,'','');end; function TBitSefClient.DirectCsv(const T,N,C:string):string;begin Result:=Post('/api/bitsef/csv/'+T+'/'+N,C,'text/plain');end; function TBitSefClient.Status(const Id:string):string;begin Result:=FHttp.Get(FBaseUrl+'/api/bitsef/status/'+Id).ContentAsString(TEncoding.UTF8);end;
+end.
