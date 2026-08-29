@@ -1,0 +1,1 @@
+const C=require('../bitsef-client'); const c=new C('http://127.0.0.1:5077','CHANGE-THIS-BIT-SEF-SECRET'); const json='{"type":"Copy","invoiceNo":"0000000187"}'; c.commandJson(json).then(console.log).catch(console.error);
