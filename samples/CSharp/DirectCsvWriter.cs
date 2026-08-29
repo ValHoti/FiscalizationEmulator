@@ -1,0 +1,1 @@
+using System;using System.IO;using System.Text; public static class DirectCsvWriter{public static string Write(string t,string n,string c){var d=@"C:\Fatura\";Directory.CreateDirectory(d);var f=Path.Combine(d,$"{t}_{n}_{DateTime.Now:yyyyMMddHHmmssfff}.csv");var x=f+".tmp";File.WriteAllText(x,c,new UTF8Encoding(false));File.Move(x,f);return f;}}

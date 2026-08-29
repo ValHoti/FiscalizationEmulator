@@ -1,0 +1,1 @@
+using System; class X{static void Main(){var c=@"copy;0000000187";Console.WriteLine(DirectCsvWriter.Write("Copy","0000000187",c));}}

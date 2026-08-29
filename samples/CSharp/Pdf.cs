@@ -1,0 +1,1 @@
+using System; class X{static void Main(){var c=@"pdf;0000000187";Console.WriteLine(DirectCsvWriter.Write("Pdf","0000000187",c));}}
