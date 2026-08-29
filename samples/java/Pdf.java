@@ -1,0 +1,1 @@
+class Pdf{public static void main(String[]a)throws Exception{String c="pdf;0000000187";System.out.println(DirectCsvWriter.w("Pdf","0000000187",c));}}

@@ -1,0 +1,1 @@
+class Copy{public static void main(String[]a)throws Exception{String c="copy;0000000187";System.out.println(DirectCsvWriter.w("Copy","0000000187",c));}}
